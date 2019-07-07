@@ -64,5 +64,10 @@ namespace LinnworksAPI
 		//New stuff for the new locations until we start using the new Order Input stuff.
 		public Int32 LocationID;
 		public Int32 LocationWarehouse;
-	} 
+
+        /// <summary>
+        /// Temporary storage for a whlsku. Note that it does not get serialised with the order, so after saving anything here will be lost.
+        /// </summary>
+        [NonSerialized] public object Whlsku;
+    } 
 }
