@@ -16,7 +16,7 @@ variables:
   projectName: 'LinnworksAPICore'
   projectFile: 'LinnworksAPICore.csproj'
   oldProjectName: 'LinnworksAPI'
-  oldProjectFile: 'LinnworksAPI.csproj'
+  oldProjectFile: 'LinnworksSDK.csproj'
 
 steps:
 - task: NuGetToolInstaller@1
