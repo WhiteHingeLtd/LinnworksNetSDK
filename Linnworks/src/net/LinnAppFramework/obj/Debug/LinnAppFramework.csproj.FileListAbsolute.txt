@@ -54,3 +54,6 @@ C:\work\LinnworksNetSDK\Linnworks\src\net\LinnAppFramework\bin\Newtonsoft.Json.x
 C:\work\LinnworksNetSDK\Linnworks\src\net\LinnAppFramework\obj\Debug\LinnAppFramework.csprojResolveAssemblyReference.cache
 C:\work\LinnworksNetSDK\Linnworks\src\net\LinnAppFramework\obj\Debug\LinnAppFramework.dll
 C:\work\LinnworksNetSDK\Linnworks\src\net\LinnAppFramework\obj\Debug\LinnAppFramework.pdb
+C:\GIT C\LinnworksNetSDK\Linnworks\src\net\LinnAppFramework\obj\Debug\LinnAppFramework.csprojAssemblyReference.cache
+C:\GIT C\LinnworksNetSDK\Linnworks\src\net\LinnAppFramework\obj\Debug\LinnAppFramework.dll
+C:\GIT C\LinnworksNetSDK\Linnworks\src\net\LinnAppFramework\obj\Debug\LinnAppFramework.pdb
