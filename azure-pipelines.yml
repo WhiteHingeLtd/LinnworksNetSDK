@@ -26,33 +26,25 @@ steps:
   inputs:
     restoreSolution: '**/$(projectFile)'
 
-
-
-- task: VSBuild@1
-  displayName: 'Build'
-  inputs:
-    solution: '**/$(projectFile)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-
 - task: DotNetCoreCLI@2
   displayName: Dotnet build
   inputs:
     command: 'build'
     projects: '**/$(projectFile)'
-    configurationToPack: '$(buildConfiguration)'
-
-- task: VSTest@2
-  displayName: 'Run Tests'
-  inputs:
-    platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Package (using dotnet)'
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/$(projectName).csproj'
+    versioningScheme: 'off'
 
 - task: DotNetCoreCLI@2
   displayName: 'Push to nuget feed (using dotnet)'
   inputs:
     command: 'push'
-    packagesToPush: '$(outputFolder)/*.nupkg'
+    packagesToPush: '**/*.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: '825df0d3-3282-4f66-b514-81618b93ef3b'
 
