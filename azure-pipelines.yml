@@ -26,12 +26,12 @@ steps:
   inputs:
     restoreSolution: '**/$(projectFile)'
 
-- task: DotNetCoreCLI@2
-  displayName: Dotnet build
+- task: VSBuild@1
   inputs:
-    command: 'build'
-    projects: '**/$(projectFile)'
+    solution: '**\\$(projectFile)'
+    platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    msbuildArchitecture: 'x64'
 
 - task: DotNetCoreCLI@2
   displayName: 'Package (using dotnet)'
