@@ -29,7 +29,6 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '**\\$(projectFile)'
-    platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     msbuildArchitecture: 'x64'
 
@@ -37,7 +36,7 @@ steps:
   displayName: 'Package (using dotnet)'
   inputs:
     command: 'pack'
-    packagesToPack: '**/$(projectName).csproj'
+    packagesToPack: '**/$(projectFile)'
     versioningScheme: 'off'
 
 - task: DotNetCoreCLI@2
