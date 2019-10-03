@@ -42,7 +42,7 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     msbuildArguments: '/p:OutputPath=outputMeUp/ /t:$(projectName)'
-    clean: true'
+    clean: true
 
 - task: VSTest@2
   displayName: 'Run Tests'
