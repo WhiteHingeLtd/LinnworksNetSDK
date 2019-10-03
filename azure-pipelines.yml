@@ -37,11 +37,11 @@ steps:
     
 - task: MSBuild@1
   inputs:
-    solution: '**/$(projectFile).sln'
+    solution: '$(solution).sln'
     msbuildArchitecture: 'x64'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    msbuildArguments: '/p:OutputPath=outputMeUp/'
+    msbuildArguments: '/p:OutputPath=outputMeUp/ /t:$(projectName)'
     clean: true'
 
 - task: VSTest@2
