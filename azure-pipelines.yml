@@ -34,15 +34,6 @@ steps:
     solution: '**/$(projectFile)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    
-- task: MSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArchitecture: 'x64'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    msbuildArguments: '/p:OutputPath=outputMeUp/ /t:$(projectName)'
-    clean: true
 
 - task: DotNetCoreCLI@2
   displayName: Dotnet build
@@ -57,6 +48,7 @@ steps:
     configuration: '$(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
+  displayName: dotnet package for nuget
   inputs:
     command: 'pack'
     packagesToPack: '**/$(projectFile)'
