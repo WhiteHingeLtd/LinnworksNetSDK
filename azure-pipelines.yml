@@ -15,35 +15,65 @@ variables:
   buildConfiguration: 'Release'
   projectName: 'LinnworksAPICore'
   projectFile: 'LinnworksAPICore.csproj'
-  outputFolder: '/outputMeUp/'
+  oldProjectName: 'LinnworksAPI'
+  oldProjectFile: 'LinnworksAPI.csproj'
 
 steps:
 - task: NuGetToolInstaller@1
   displayName: 'Install NuGet'
 
 - task: NuGetCommand@2
-  displayName: 'Restore Packages'
+  displayName: 'Core# Restore Packages'
   inputs:
     restoreSolution: '**/$(projectFile)'
 
 - task: VSBuild@1
+  displayName: 'Core# Build'
   inputs:
     solution: '**\\$(projectFile)'
     configuration: '$(buildConfiguration)'
     msbuildArchitecture: 'x64'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Package (using dotnet)'
+  displayName: 'Core# Package (using dotnet)'
   inputs:
     command: 'pack'
     packagesToPack: '**/$(projectFile)'
     versioningScheme: 'off'
 
 - task: DotNetCoreCLI@2
-  displayName: 'Push to nuget feed (using dotnet)'
+  displayName: 'Core# Push to nuget feed (using dotnet)'
   inputs:
     command: 'push'
-    packagesToPush: '**/*.nupkg'
+    packagesToPush: '**/$(projectName).*.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '825df0d3-3282-4f66-b514-81618b93ef3b'
+
+- task: NuGetCommand@2
+  displayName: 'Old# Restore Packages'
+  inputs:
+    restoreSolution: '**/$(oldProjectFile)'
+
+- task: VSBuild@1
+  displayName: 'Old# Build'
+  inputs:
+    solution: '**\\$(oldProjectFile)'
+    configuration: '$(buildConfiguration)'
+    msbuildArchitecture: 'x64'
+
+- task: NuGetCommand@2
+  displayName: 'Old# Package nuget'
+  inputs:
+    command: 'pack'
+    packagesToPack: '**\\$(oldProjectFile)'
+    versioningScheme: 'off'
+
+
+- task: DotNetCoreCLI@2
+  displayName: 'Old# Push to nuget feed (using dotnet)'
+  inputs:
+    command: 'push'
+    packagesToPush: '**/$(oldProjectName).*.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: '825df0d3-3282-4f66-b514-81618b93ef3b'
 
