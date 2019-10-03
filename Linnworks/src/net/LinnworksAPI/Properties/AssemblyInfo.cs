@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("LinnworksAPI")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("The Linnworks API. Not updated anymore, you should use the core version instead (LinnworksAPICore)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Linn Systems")]
 [assembly: AssemblyProduct("LinnworksAPI")]
