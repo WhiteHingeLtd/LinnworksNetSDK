@@ -7,13 +7,14 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 variables:
   solution: '**/LinnMacroCustomer.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   projectName: 'LinnworksAPICore'
+  projectFile: 'LinnworksAPICore.csproj'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -22,12 +23,12 @@ steps:
 - task: NuGetCommand@2
   displayName: 'Restore Packages'
   inputs:
-    restoreSolution: '$(solution)'
+    restoreSolution: '**/$(projectFile)'
 
 - task: VSBuild@1
   displayName: 'Build'
   inputs:
-    solution: '**/LinnworksAPICore.csproj'
+    solution: '**/$(projectFile)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
