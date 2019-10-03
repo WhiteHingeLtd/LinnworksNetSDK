@@ -54,6 +54,7 @@ steps:
   inputs:
     solution: '**\\$(oldProjectFile)'
     configuration: '$(buildConfiguration)'
+    platform: '$(buildPlatform)'
     msbuildArchitecture: 'x64'
 
 - task: NuGetCommand@2
