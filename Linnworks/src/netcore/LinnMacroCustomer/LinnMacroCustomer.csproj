@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LinnworksAPI\LinnworksAPI.csproj" />
+    <ProjectReference Include="..\LinnworksAPI\LinnworksAPICore.csproj" />
     <ProjectReference Include="..\LinnworksMacro\LinnworksMacro.csproj" />
   </ItemGroup>
 
