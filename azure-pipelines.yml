@@ -52,7 +52,9 @@ steps:
 - task: NuGetCommand@2
   displayName: 'Old# Restore Packages'
   inputs:
+    command: 'restore'
     restoreSolution: '**/$(oldProjectFile)'
+    restoreDirectory: '../packages'
 
 - task: VSBuild@1
   displayName: 'Old# Build'
