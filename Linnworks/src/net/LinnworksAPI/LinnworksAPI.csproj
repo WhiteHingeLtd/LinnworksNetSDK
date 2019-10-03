@@ -36,7 +36,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>SPC.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Snek.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
@@ -511,6 +511,7 @@
   <ItemGroup>
     <None Include="LinnworksAPI.nuspec" />
     <None Include="packages.config" />
+    <None Include="Snek.snk" />
     <None Include="SPC.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
