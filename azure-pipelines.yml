@@ -15,6 +15,7 @@ variables:
   buildConfiguration: 'Release'
   projectName: 'LinnworksAPICore'
   projectFile: 'LinnworksAPICore.csproj'
+  outputFolder: '/outputMeUp/'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -25,12 +26,23 @@ steps:
   inputs:
     restoreSolution: '**/$(projectFile)'
 
+
+
 - task: VSBuild@1
   displayName: 'Build'
   inputs:
     solution: '**/$(projectFile)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+    
+- task: MSBuild@1
+  inputs:
+    solution: '**/$(projectFile).sln'
+    msbuildArchitecture: 'x64'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+    msbuildArguments: '/p:OutputPath=outputMeUp/'
+    clean: true'
 
 - task: VSTest@2
   displayName: 'Run Tests'
@@ -43,6 +55,7 @@ steps:
   displayName: 'Push to nuget feed (using dotnet)'
   inputs:
     command: 'push'
-    packagesToPush: '$**/*.nupkg'
+    packagesToPush: '$(outputFolder)/*.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: '825df0d3-3282-4f66-b514-81618b93ef3b'
+
