@@ -16,7 +16,7 @@ variables:
   projectName: 'LinnworksAPICore'
   projectFile: 'LinnworksAPICore.csproj'
   oldProjectName: 'LinnworksAPI'
-  oldProjectFile: 'LinnworksAPI.csproj'
+  oldProjectFile: 'LinnworksSDK.sln'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -54,6 +54,7 @@ steps:
   inputs:
     solution: '**\\$(oldProjectFile)'
     configuration: '$(buildConfiguration)'
+    platform: '$(buildPlatform)'
     msbuildArchitecture: 'x64'
 
 - task: NuGetCommand@2
