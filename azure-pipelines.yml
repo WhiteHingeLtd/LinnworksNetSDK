@@ -47,7 +47,7 @@ steps:
   displayName: 'Old# Restore Packages'
   inputs:
     command: 'restore'
-    restoreSolution: '**/$(oldProjectFile)'
+    restoreSolution: '**/$(oldProjectSln)'
     restoreDirectory: 'packages'
 
 - task: VSBuild@1
