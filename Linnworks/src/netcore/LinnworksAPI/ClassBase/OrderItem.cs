@@ -239,5 +239,9 @@ namespace LinnworksAPI
 		public Guid OrderId;
 
 		public Guid StockItemId;
+
+		public object Whlsku;
+		public int LocationID;
+		public int LocationWarehouse;
 	} 
 }
