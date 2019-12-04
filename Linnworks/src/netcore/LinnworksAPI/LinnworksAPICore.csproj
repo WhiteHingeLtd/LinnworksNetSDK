@@ -8,10 +8,13 @@
     <AssemblyName>LinnworksAPICore</AssemblyName>
     <RootNamespace>LinnworksAPICore</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.0.4</AssemblyVersion>
-    <FileVersion>1.0.0.4</FileVersion>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
     <Version>1.0.0.4</Version>
     <Description>An Excellent Package.</Description>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Snek.snk</AssemblyOriginatorKeyFile>
+    <PackageVersion>1.1.0.0-WhiteHinge</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
