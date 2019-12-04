@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace LinnworksAPI
 {
@@ -85,10 +86,10 @@ namespace LinnworksAPI
         /// <param name="sortDirection">The sort direction (true = ascending, false = descending).</param>
         /// <param name="historyType">Search type. Allow RETURNS or REFUNDS</param>
         /// <returns>Returns the URL of the CSV file</returns>
-        public String CreateReturnsRefundsCSV(DateTime? from,DateTime? to,ReturnsRefundsSearchDateType dateType,String searchField,Boolean exactMatch,String searchTerm,String sortColumn,Boolean sortDirection,HistoryType historyType = HistoryType.RETURNS)
+        public Task<String> CreateReturnsRefundsCSV(DateTime? from,DateTime? to,ReturnsRefundsSearchDateType dateType,String searchField,Boolean exactMatch,String searchTerm,String sortColumn,Boolean sortDirection,HistoryType historyType = HistoryType.RETURNS)
 		{
 			var response = GetResponse("ReturnsRefunds/CreateReturnsRefundsCSV", "from=" + System.Net.WebUtility.UrlEncode(from.HasValue ? from.Value.ToString("yyyy-MM-dd HH:mm:ss") : "null") + "&to=" + System.Net.WebUtility.UrlEncode(to.HasValue ? to.Value.ToString("yyyy-MM-dd HH:mm:ss") : "null") + "&dateType=" + dateType.ToString() + "&searchField=" + System.Net.WebUtility.UrlEncode(searchField) + "&exactMatch=" + exactMatch + "&searchTerm=" + System.Net.WebUtility.UrlEncode(searchTerm) + "&sortColumn=" + System.Net.WebUtility.UrlEncode(sortColumn) + "&sortDirection=" + sortDirection + "&historyType=" + historyType.ToString() + "");
-            return JsonFormatter.ConvertFromJson<String>(response);
+            return JsonFormatter.ConvertFromJson<Task<String>>(response);
 		}
 
 		/// <summary>
@@ -182,16 +183,6 @@ namespace LinnworksAPI
 		}
 
 		/// <summary>
-        /// Gets all booked returns/exchange order items for a given order ID 
-        /// </summary>
-        /// <returns>List of refund order items</returns>
-        public List<BookedReturnsExchangeItem> GetBookedReturnsExchangeItems(Guid pkOrderId)
-		{
-			var response = GetResponse("ReturnsRefunds/GetBookedReturnsExchangeItems", "pkOrderId=" + pkOrderId + "");
-            return JsonFormatter.ConvertFromJson<List<BookedReturnsExchangeItem>>(response);
-		}
-
-		/// <summary>
         /// Gets all booked returns/exchange orders 
         /// </summary>
         /// <returns>List of refund order items</returns>
@@ -259,18 +250,6 @@ namespace LinnworksAPI
 		{
 			var response = GetResponse("ReturnsRefunds/GetRefundOrders", "");
             return JsonFormatter.ConvertFromJson<List<RefundOrder>>(response);
-		}
-
-		/// <summary>
-        /// Gets all refund order items for an order 
-        /// </summary>
-        /// <param name="pkOrderId">Primary key for order</param>
-        /// <param name="refundReference">Refund reference to return</param>
-        /// <returns>List of refund order items</returns>
-        public List<RefundInfo> GetRefunds(Guid pkOrderId,Guid? refundReference = null)
-		{
-			var response = GetResponse("ReturnsRefunds/GetRefunds", "pkOrderId=" + pkOrderId + "&refundReference=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(refundReference)) + "");
-            return JsonFormatter.ConvertFromJson<List<RefundInfo>>(response);
 		}
 
 		/// <summary>

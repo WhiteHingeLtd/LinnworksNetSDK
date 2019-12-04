@@ -112,6 +112,15 @@ namespace LinnworksAPI
 		}
 
 		/// <summary>
+        /// Scrap batched items in bulk without consumption 
+        /// </summary>
+        /// <param name="request"></param>
+        public void BulkScrapBatchedItems(BulkScrapBatchedItemsRequest request)
+		{
+			GetResponse("Inventory/BulkScrapBatchedItems", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+		}
+
+		/// <summary>
         /// Used to create new batches 
         /// </summary>
         /// <param name="batches">List of batches to create</param>
@@ -181,7 +190,7 @@ namespace LinnworksAPI
         /// Use this call to create stockitem Extended Properties 
         /// </summary>
         /// <param name="inventoryItemExtendedProperties">list of stockitem Extended Properties</param>
-        public void CreateInventoryItemExtendedProperties(List<StockItemExtendedProperty> inventoryItemExtendedProperties)
+        public void CreateInventoryItemExtendedProperties(List<StockItemExtendedPropertyUpsertItem> inventoryItemExtendedProperties)
 		{
 			GetResponse("Inventory/CreateInventoryItemExtendedProperties", "inventoryItemExtendedProperties=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(inventoryItemExtendedProperties)) + "");
 		}
@@ -460,6 +469,16 @@ namespace LinnworksAPI
 		}
 
 		/// <summary>
+        /// Retruns batch header and only batch inventory for provided batch 
+        /// </summary>
+        /// <param name="request"></param>
+        public GetBatchInventoryByIdResponse GetBatchInventoryById(GetBatchInventoryByIdRequest request)
+		{
+			var response = GetResponse("Inventory/GetBatchInventoryById", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+            return JsonFormatter.ConvertFromJson<GetBatchInventoryByIdResponse>(response);
+		}
+
+		/// <summary>
         /// Use this call to get categories 
         /// </summary>
         /// <returns>List of categories</returns>
@@ -508,15 +527,6 @@ namespace LinnworksAPI
 		}
 
 		/// <summary>
-        /// Use this call to get a list of Ebay Compatibility culture list 
-        /// </summary>
-        public Dictionary<String,String> GetEbayCompatibilityCultures()
-		{
-			var response = GetResponse("Inventory/GetEbayCompatibilityCultures", "");
-            return JsonFormatter.ConvertFromJson<Dictionary<String,String>>(response);
-		}
-
-		/// <summary>
         /// Use this call to get a list of Ebay Compatibility 
         /// </summary>
         /// <param name="stockItemId">Stock Item Id</param>
@@ -548,6 +558,17 @@ namespace LinnworksAPI
 		}
 
 		/// <summary>
+        /// Use this call to Get inventory item images 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>list of inventory item images</returns>
+        public GetImagesInBulkResponse GetImagesInBulk(GetImagesInBulkRequest request)
+		{
+			var response = GetResponse("Inventory/GetImagesInBulk", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+            return JsonFormatter.ConvertFromJson<GetImagesInBulkResponse>(response);
+		}
+
+		/// <summary>
         /// Use this call to get available inventory batch types 
         /// </summary>
         /// <returns>Dictionary of inventory batch types</returns>
@@ -576,6 +597,12 @@ namespace LinnworksAPI
 		{
 			var response = GetResponse("Inventory/GetInventoryItemBatchInformation", "Request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(Request)) + "");
             return JsonFormatter.ConvertFromJson<List<StockItemBatch>>(response);
+		}
+
+		public GetInventoryItemBatchInformationByIdsResponse GetInventoryItemBatchInformationByIds(GetInventoryItemBatchInformationByIdsRequest request)
+		{
+			var response = GetResponse("Inventory/GetInventoryItemBatchInformationByIds", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+            return JsonFormatter.ConvertFromJson<GetInventoryItemBatchInformationByIdsResponse>(response);
 		}
 
 		/// <summary>
@@ -667,6 +694,15 @@ namespace LinnworksAPI
 		}
 
 		/// <summary>
+        /// Use this call to get all possible price change subsource suffices for all channels 
+        /// </summary>
+        public Dictionary<String,List<String>> GetInventoryItemPriceChannelSuffixes()
+		{
+			var response = GetResponse("Inventory/GetInventoryItemPriceChannelSuffixes", "");
+            return JsonFormatter.ConvertFromJson<Dictionary<String,List<String>>>(response);
+		}
+
+		/// <summary>
         /// Use this call to get stock item price rules by price id 
         /// </summary>
         /// <param name="stockItemPriceId">Price ID of an item</param>
@@ -697,6 +733,26 @@ namespace LinnworksAPI
 		{
 			var response = GetResponse("Inventory/GetInventoryItemPrices", "inventoryItemId=" + inventoryItemId + "");
             return JsonFormatter.ConvertFromJson<List<StockItemPrice>>(response);
+		}
+
+		/// <summary>
+        /// Use this call to get all possible price change tags for all channels 
+        /// </summary>
+        public Dictionary<String,List<String>> GetInventoryItemPriceTags()
+		{
+			var response = GetResponse("Inventory/GetInventoryItemPriceTags", "");
+            return JsonFormatter.ConvertFromJson<Dictionary<String,List<String>>>(response);
+		}
+
+		/// <summary>
+        /// Use this call to get all StockItem Compositions 
+        /// </summary>
+        /// <param name="request">Object with InventoryItemIds</param>
+        /// <returns>Object with InventoryItemsCompositionByIds</returns>
+        public GetInventoryItemsCompositionByIdsResponse GetInventoryItemsCompositionByIds(GetInventoryItemsCompositionByIdsRequest request)
+		{
+			var response = GetResponse("Inventory/GetInventoryItemsCompositionByIds", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+            return JsonFormatter.ConvertFromJson<GetInventoryItemsCompositionByIdsResponse>(response);
 		}
 
 		/// <summary>
@@ -804,6 +860,17 @@ namespace LinnworksAPI
 		{
 			var response = GetResponse("Inventory/GetStockItemBatchesByLocation", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
             return JsonFormatter.ConvertFromJson<GetStockItemBatchesByLocationResponse>(response);
+		}
+
+		/// <summary>
+        /// Use this call to Get inventory item images 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>list of inventory item images</returns>
+        public GetStockItemIdsBySKU GetStockItemIdsBySKU(GetStockItemIdsBySKURequest request)
+		{
+			var response = GetResponse("Inventory/GetStockItemIdsBySKU", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+            return JsonFormatter.ConvertFromJson<GetStockItemIdsBySKU>(response);
 		}
 
 		/// <summary>

@@ -201,9 +201,9 @@ namespace LinnworksAPI
         /// </summary>
         /// <param name="fulfilmentCenter">Fulfilment center to be associated</param>
         /// <returns>Order created</returns>
-        public OpenOrder CreateNewOrder(Guid fulfilmentCenter)
+        public OpenOrder CreateNewOrder(Guid fulfilmentCenter,Boolean createAsDraft = true)
 		{
-			var response = GetResponse("Orders/CreateNewOrder", "fulfilmentCenter=" + fulfilmentCenter + "");
+			var response = GetResponse("Orders/CreateNewOrder", "fulfilmentCenter=" + fulfilmentCenter + "&createAsDraft=" + createAsDraft + "");
             return JsonFormatter.ConvertFromJson<OpenOrder>(response);
 		}
 
@@ -237,6 +237,16 @@ namespace LinnworksAPI
         public void DeleteOrder(Guid orderId)
 		{
 			GetResponse("Orders/DeleteOrder", "orderId=" + orderId + "");
+		}
+
+		/// <summary>
+        /// Get a basic info of open orders, from a list of open order items 
+        /// </summary>
+        /// <param name="request"></param>
+        public Get_OpenOrderBasicInfoFromItemsResponse Get_OpenOrderBasicInfoFromItems(Get_OpenOrderBasicInfoFromItemsRequest request)
+		{
+			var response = GetResponse("Orders/Get_OpenOrderBasicInfoFromItems", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+            return JsonFormatter.ConvertFromJson<Get_OpenOrderBasicInfoFromItemsResponse>(response);
 		}
 
 		/// <summary>
@@ -471,7 +481,18 @@ namespace LinnworksAPI
 		}
 
 		/// <summary>
-        /// Retrieves the order detail for a unique system order id identifier (pkOrderId) 
+        /// Returns a list of audit trails for the provided order ids 
+        /// </summary>
+        /// <param name="request"></param>
+        public GetOrderAuditTrailsByIdsResponse GetOrderAuditTrailsByIds(GetOrderAuditTrailsByIdsRequest request)
+		{
+			var response = GetResponse("Orders/GetOrderAuditTrailsByIds", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+            return JsonFormatter.ConvertFromJson<GetOrderAuditTrailsByIdsResponse>(response);
+		}
+
+		/// <summary>
+        /// Retrieves the order detail for a unique system order id identifier (pkOrderId)
+        /// For working with open orders recommended to use OpenOrders/GetOpenOrdersDetails 
         /// </summary>
         /// <param name="pkOrderId">pkOrderId</param>
         /// <returns>Order detail class. Stock levels for the order items are not available in this call</returns>
@@ -482,7 +503,8 @@ namespace LinnworksAPI
 		}
 
 		/// <summary>
-        /// Retrieves the order detail for a given order numeric id. If not found  empty class is returned. 
+        /// Retrieves the order detail for a given order numeric id. If not found  empty class is returned.  
+        /// For working with open orders recommended to use OpenOrders/GetOpenOrdersDetails 
         /// </summary>
         /// <param name="OrderId">Order Id (numeric)</param>
         /// <returns>Order detail class. Stock levels for the order items are not available in this call</returns>
@@ -502,6 +524,16 @@ namespace LinnworksAPI
 		{
 			var response = GetResponse("Orders/GetOrderDetailsByReferenceId", "ReferenceId=" + System.Net.WebUtility.UrlEncode(ReferenceId) + "");
             return JsonFormatter.ConvertFromJson<List<OrderDetails>>(response);
+		}
+
+		/// <summary>
+        /// Get a list of order item batch information for the specified orders 
+        /// </summary>
+        /// <param name="request">Made up of list of pkOrderIds</param>
+        public GetOrderItemBatchesByOrderIdsResponse GetOrderItemBatchesByOrderIds(GetOrderItemBatchesByOrderIdsRequest request)
+		{
+			var response = GetResponse("Orders/GetOrderItemBatchesByOrderIds", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+            return JsonFormatter.ConvertFromJson<GetOrderItemBatchesByOrderIdsResponse>(response);
 		}
 
 		/// <summary>
@@ -604,7 +636,8 @@ namespace LinnworksAPI
 		}
 
 		/// <summary>
-        /// Retrieves the order detail list for a list of order id identifiers (pkOrderId) 
+        /// Retrieves the order detail list for a list of order id identifiers (pkOrderId)
+        /// For working with open orders recommended to use OpenOrders/GetOpenOrdersDetails 
         /// </summary>
         /// <param name="pkOrderIds">List of order ids (pkOrderId)</param>
         /// <returns>List of order detail class. Stock levels for the order items are not available in this call</returns>
@@ -689,7 +722,7 @@ namespace LinnworksAPI
 		}
 
 		/// <summary>
-        /// Get the user location from setings 
+        /// Get the user location from settings 
         /// </summary>
         /// <returns>User location Id</returns>
         public Guid GetUserLocationId()
@@ -761,11 +794,10 @@ namespace LinnworksAPI
         /// <param name="orderId">Order id</param>
         /// <param name="scanPerformed">Indicate if the scan has been performed</param>
         /// <param name="locationId">User location</param>
-        /// <param name="allowZeroAndNegativeBatchQty">Indicates if the available batches on the stock item need to have enough stock for the order item</param>
         /// <returns>Return a boolean meaning if has been processed, and a possible error</returns>
-        public ProcessOrderResult ProcessOrder(Guid orderId,Boolean scanPerformed,Guid? locationId,Boolean allowZeroAndNegativeBatchQty = false)
+        public ProcessOrderResult ProcessOrder(Guid orderId,Boolean scanPerformed,Guid? locationId)
 		{
-			var response = GetResponse("Orders/ProcessOrder", "orderId=" + orderId + "&scanPerformed=" + scanPerformed + "&locationId=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(locationId)) + "&allowZeroAndNegativeBatchQty=" + allowZeroAndNegativeBatchQty + "");
+			var response = GetResponse("Orders/ProcessOrder", "orderId=" + orderId + "&scanPerformed=" + scanPerformed + "&locationId=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(locationId)) + "");
             return JsonFormatter.ConvertFromJson<ProcessOrderResult>(response);
 		}
 
@@ -825,9 +857,10 @@ namespace LinnworksAPI
         /// Run Rules Engine on Open Orders 
         /// </summary>
         /// <param name="orderIds">List of order IDs to run rules on</param>
-        public List<Guid> RunRulesEngine(Guid[] orderIds)
+        /// <param name="ruleId">Id of Rule to run. Null if all rules should be run</param>
+        public List<Guid> RunRulesEngine(Guid[] orderIds,Int32? ruleId = null)
 		{
-			var response = GetResponse("Orders/RunRulesEngine", "orderIds=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(orderIds)) + "");
+			var response = GetResponse("Orders/RunRulesEngine", "orderIds=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(orderIds)) + "&ruleId=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(ruleId)) + "");
             return JsonFormatter.ConvertFromJson<List<Guid>>(response);
 		}
 

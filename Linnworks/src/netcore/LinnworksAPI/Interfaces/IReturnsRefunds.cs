@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace LinnworksAPI
 { 
@@ -14,7 +15,7 @@ namespace LinnworksAPI
 		ActionRefundResponse ActionRefund(ActionRefundRequest request);
 		ActionRMABookingResponse ActionRMABooking(ActionRMABookingRequest request);
 		CreateRefundResponse CreateRefund(CreateRefundRequest request);
-		String CreateReturnsRefundsCSV(DateTime? from,DateTime? to,ReturnsRefundsSearchDateType dateType,String searchField,Boolean exactMatch,String searchTerm,String sortColumn,Boolean sortDirection,HistoryType historyType = HistoryType.RETURNS);
+		Task<String> CreateReturnsRefundsCSV(DateTime? from,DateTime? to,ReturnsRefundsSearchDateType dateType,String searchField,Boolean exactMatch,String searchTerm,String sortColumn,Boolean sortDirection,HistoryType historyType = HistoryType.RETURNS);
 		CreateRMABookingResponse CreateRMABooking(CreateRMABookingRequest request);
 		void DeleteBookedItem(Guid pkOrderId,Int32 pkReturnId);
 		void DeleteBookedOrder(Guid pkOrderId);
@@ -24,7 +25,6 @@ namespace LinnworksAPI
 		void EditBookedItemInfo(Guid pkOrderId,BookedReturnsExchangeItem bookedReturnsExchangeItem);
 		GetActionableRefundHeadersResponse GetActionableRefundHeaders(GetActionableRefundHeadersRequest request);
 		GetActionableRMAHeadersResponse GetActionableRMAHeaders(GetActionableRMAHeadersRequest request);
-		List<BookedReturnsExchangeItem> GetBookedReturnsExchangeItems(Guid pkOrderId);
 		List<BookedReturnsExchangeOrder> GetBookedReturnsExchangeOrders();
 		GetProcessedOrAckedErrorRefundHeadersResponse GetProcessedOrAckedErrorRefundHeaders(GetProcessedOrAckedErrorRefundHeadersRequest request);
 		GetProcessedOrAckedErrorRMAHeadersResponse GetProcessedOrAckedErrorRMAHeaders(GetProcessedOrAckedErrorRMAHeadersRequest request);
@@ -32,7 +32,6 @@ namespace LinnworksAPI
 		GetRefundLinesByHeaderIdResponse GetRefundLinesByHeaderId(GetRefundLinesByHeaderIdRequest request);
 		GetRefundOptionsResponse GetRefundOptions(GetRefundOptionsRequest request);
 		List<RefundOrder> GetRefundOrders();
-		List<RefundInfo> GetRefunds(Guid pkOrderId,Guid? refundReference = null);
 		GetReturnOptionsResponse GetReturnOptions(GetReturnOptionsRequest request);
 		GetRMAHeadersByOrderIdResponse GetRMAHeadersByOrderId(GetRMAHeadersByOrderIdRequest request);
 		List<SearchField> GetSearchTypes(HistoryType historyType);

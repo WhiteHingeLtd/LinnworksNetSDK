@@ -103,6 +103,10 @@ ipch/
 # TFS 2012 Local Workspace
 $tf/
 
+# Nuget packages
+**/packages/*
+*.pdb
+
 # Guidance Automation Toolkit
 *.gpState
 

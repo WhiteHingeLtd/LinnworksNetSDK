@@ -31,6 +31,15 @@ namespace LinnworksAPI
 		}
 
 		/// <summary>
+        /// Delete existing Tote from location 
+        /// </summary>
+        public DeleteWarehouseToteResponse DeleteWarehouseTOTE(DeleteWarehouseToteRequest request)
+		{
+			var response = GetResponse("Locations/DeleteWarehouseTOTE", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+            return JsonFormatter.ConvertFromJson<DeleteWarehouseToteResponse>(response);
+		}
+
+		/// <summary>
         /// Use this call to retrieve a location and basic information about it from your Linnworks account. 
         /// </summary>
         /// <param name="pkStockLocationId">The pkStockLocationId which identifies the location</param>
@@ -39,6 +48,16 @@ namespace LinnworksAPI
 		{
 			var response = GetResponse("Locations/GetLocation", "pkStockLocationId=" + pkStockLocationId + "");
             return JsonFormatter.ConvertFromJson<StockLocation>(response);
+		}
+
+		/// <summary>
+        /// Gets list of tots for a specific location or find a specific tot depending on the request parameters. Specify tot id or tot barcode to find specific tot in the location or 
+        /// if nothing is specified or parameters are omitted, all tots for the location will be returned 
+        /// </summary>
+        public GetWarehouseTotesResponse GetWarehouseTOTEs(GetWarehouseTotesRequest request)
+		{
+			var response = GetResponse("Locations/GetWarehouseTOTEs", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+            return JsonFormatter.ConvertFromJson<GetWarehouseTotesResponse>(response);
 		}
 
 		/// <summary>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace LinnworksAPI
 {
@@ -13,6 +14,17 @@ namespace LinnworksAPI
         }
 
         /// <summary>
+        /// Add rolling stock take/count. Rolling stock count will create a stock count header for every day (UTC based). Every request will create a session, adds all entries into the stock count
+        /// recounts all totals and discrepancies. WMS location or batched items requires BatchInventoryId to be specified. If you are submitting stock level for item that doesn't have batch inventory you must create it first, get its id and submit in the count
+        /// The method validates all entries, if any errors encountered the whole request will be rejected. 
+        /// </summary>
+        public AddRollingStockTakeResponse AddRollingStockTake(AddRollingStockTakeRequest request)
+		{
+			var response = GetResponse("Stock/AddRollingStockTake", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+            return JsonFormatter.ConvertFromJson<AddRollingStockTakeResponse>(response);
+		}
+
+		/// <summary>
         /// Use this call to add a new item to a variation group 
         /// </summary>
         /// <param name="pkVariationItemId">The variation group id</param>
@@ -22,6 +34,12 @@ namespace LinnworksAPI
 		{
 			var response = GetResponse("Stock/AddVariationItems", "pkVariationItemId=" + pkVariationItemId + "&pkStockItemIds=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(pkStockItemIds)) + "");
             return JsonFormatter.ConvertFromJson<List<VariationItem>>(response);
+		}
+
+		public BatchStockLevelDeltaResponse BatchStockLevelDelta(BatchStockLevelDetaRequest request)
+		{
+			var response = GetResponse("Stock/BatchStockLevelDelta", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+            return JsonFormatter.ConvertFromJson<BatchStockLevelDeltaResponse>(response);
 		}
 
 		/// <summary>
@@ -131,10 +149,10 @@ namespace LinnworksAPI
         /// <param name="stockItemId">Used to specify stock item id</param>
         /// <param name="locationId">Used to specify location id. If null then combined</param>
         /// <returns>TempFile</returns>
-        public TempFile GetItemChangesHistoryCSV(Guid stockItemId,Guid locationId)
+        public Task<TempFile> GetItemChangesHistoryCSV(Guid stockItemId,Guid locationId)
 		{
 			var response = GetResponse("Stock/GetItemChangesHistoryCSV", "stockItemId=" + stockItemId + "&locationId=" + locationId + "");
-            return JsonFormatter.ConvertFromJson<TempFile>(response);
+            return JsonFormatter.ConvertFromJson<Task<TempFile>>(response);
 		}
 
 		/// <summary>
@@ -230,6 +248,17 @@ namespace LinnworksAPI
 		{
 			var response = GetResponse("Stock/GetStockItemsFull", "keyword=" + System.Net.WebUtility.UrlEncode(keyword) + "&loadCompositeParents=" + loadCompositeParents + "&loadVariationParents=" + loadVariationParents + "&entriesPerPage=" + entriesPerPage + "&pageNumber=" + pageNumber + "&dataRequirements=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(dataRequirements)) + "&searchTypes=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(searchTypes)) + "");
             return JsonFormatter.ConvertFromJson<List<StockItemFull>>(response);
+		}
+
+		/// <summary>
+        /// Used to get inventory item information at a basic level from ids. 
+        /// </summary>
+        /// <param name="request">Object with a list of pkStockItemIds and Data Requirements</param>
+        /// <returns>Object with StockItemsFullExtendedByIds</returns>
+        public GetStockItemsFullByIdsResponse GetStockItemsFullByIds(GetStockItemsFullByIdsRequest request)
+		{
+			var response = GetResponse("Stock/GetStockItemsFullByIds", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+            return JsonFormatter.ConvertFromJson<GetStockItemsFullByIdsResponse>(response);
 		}
 
 		/// <summary>

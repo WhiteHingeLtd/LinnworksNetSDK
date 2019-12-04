@@ -20,9 +20,10 @@ namespace LinnworksAPI
         /// <param name="templateID">The ID of the template to use</param>
         /// <param name="parameters"></param>
         /// <param name="printerName">printer name of the ivrtual printer to use. If null then the sepecified in the template</param>
-        public CreatePDFResult CreatePDFfromJobForceTemplate(String templateType,List<Guid> IDs,Int32? templateID,List<KeyValuePair<String,String>> parameters,String printerName)
+        /// <param name="printZoneCode">Print zone code, if present, will override the printer used if the template has a set printer for that zone</param>
+        public CreatePDFResult CreatePDFfromJobForceTemplate(String templateType,List<Guid> IDs,Int32? templateID,List<KeyValuePair<String,String>> parameters,String printerName,String printZoneCode = "")
 		{
-			var response = GetResponse("PrintService/CreatePDFfromJobForceTemplate", "templateType=" + System.Net.WebUtility.UrlEncode(templateType) + "&IDs=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(IDs)) + "&templateID=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(templateID)) + "&parameters=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(parameters)) + "&printerName=" + System.Net.WebUtility.UrlEncode(printerName) + "");
+			var response = GetResponse("PrintService/CreatePDFfromJobForceTemplate", "templateType=" + System.Net.WebUtility.UrlEncode(templateType) + "&IDs=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(IDs)) + "&templateID=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(templateID)) + "&parameters=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(parameters)) + "&printerName=" + System.Net.WebUtility.UrlEncode(printerName) + "&printZoneCode=" + System.Net.WebUtility.UrlEncode(printZoneCode) + "");
             return JsonFormatter.ConvertFromJson<CreatePDFResult>(response);
 		}
 
@@ -34,9 +35,10 @@ namespace LinnworksAPI
         /// <param name="templateID">The ID of the template to use</param>
         /// <param name="parameters"></param>
         /// <param name="printerName">printer name of the ivrtual printer to use. If null then the sepecified in the template</param>
-        public CreatePDFResult CreatePDFfromJobForceTemplateStockIn(String templateType,List<PrintingKey> PrintingKeys,Int32? templateID,List<KeyValuePair<String,String>> parameters,String printerName)
+        /// <param name="printZoneCode">Print zone code, if present, will override the printer used if the template has a set printer for that zone</param>
+        public CreatePDFResult CreatePDFfromJobForceTemplateStockIn(String templateType,List<PrintingKey> PrintingKeys,Int32? templateID,List<KeyValuePair<String,String>> parameters,String printerName,String printZoneCode = "")
 		{
-			var response = GetResponse("PrintService/CreatePDFfromJobForceTemplateStockIn", "templateType=" + System.Net.WebUtility.UrlEncode(templateType) + "&PrintingKeys=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(PrintingKeys)) + "&templateID=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(templateID)) + "&parameters=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(parameters)) + "&printerName=" + System.Net.WebUtility.UrlEncode(printerName) + "");
+			var response = GetResponse("PrintService/CreatePDFfromJobForceTemplateStockIn", "templateType=" + System.Net.WebUtility.UrlEncode(templateType) + "&PrintingKeys=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(PrintingKeys)) + "&templateID=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(templateID)) + "&parameters=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(parameters)) + "&printerName=" + System.Net.WebUtility.UrlEncode(printerName) + "&printZoneCode=" + System.Net.WebUtility.UrlEncode(printZoneCode) + "");
             return JsonFormatter.ConvertFromJson<CreatePDFResult>(response);
 		}
 
@@ -48,9 +50,10 @@ namespace LinnworksAPI
         /// <param name="templateID">The ID of the template to use</param>
         /// <param name="parameters"></param>
         /// <param name="printerName">Printer name of the virtual printer to use. If null then the sepecified in the template</param>
-        public CreatePDFResult CreatePDFfromJobForceTemplateWithQuantities(String templateType,List<KeyValuePair<Guid,Int32>> IDsAndQuantities,Int32? templateID,List<KeyValuePair<String,String>> parameters,String printerName)
+        /// <param name="printZoneCode">Print zone code, if present, will override the printer used if the template has a set printer for that zone</param>
+        public CreatePDFResult CreatePDFfromJobForceTemplateWithQuantities(String templateType,List<KeyValuePair<Guid,Int32>> IDsAndQuantities,Int32? templateID,List<KeyValuePair<String,String>> parameters,String printerName,String printZoneCode = "")
 		{
-			var response = GetResponse("PrintService/CreatePDFfromJobForceTemplateWithQuantities", "templateType=" + System.Net.WebUtility.UrlEncode(templateType) + "&IDsAndQuantities=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(IDsAndQuantities)) + "&templateID=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(templateID)) + "&parameters=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(parameters)) + "&printerName=" + System.Net.WebUtility.UrlEncode(printerName) + "");
+			var response = GetResponse("PrintService/CreatePDFfromJobForceTemplateWithQuantities", "templateType=" + System.Net.WebUtility.UrlEncode(templateType) + "&IDsAndQuantities=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(IDsAndQuantities)) + "&templateID=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(templateID)) + "&parameters=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(parameters)) + "&printerName=" + System.Net.WebUtility.UrlEncode(printerName) + "&printZoneCode=" + System.Net.WebUtility.UrlEncode(printZoneCode) + "");
             return JsonFormatter.ConvertFromJson<CreatePDFResult>(response);
 		}
 

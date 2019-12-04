@@ -13,6 +13,16 @@ namespace LinnworksAPI
         }
 
         /// <summary>
+        /// Use this call to add multiple items to the transfer (only works for transfers in draft/request states) 
+        /// </summary>
+        /// <param name="request">Request object with data needed</param>
+        public AddItemsToTransferResponse AddItemsToTransfer(AddItemsToTransferRequest request)
+		{
+			var response = GetResponse("WarehouseTransfer/AddItemsToTransfer", "request=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(request)) + "");
+            return JsonFormatter.ConvertFromJson<AddItemsToTransferResponse>(response);
+		}
+
+		/// <summary>
         /// Use this call to add an item to the transfer (only works for transfers in draft/request states) 
         /// </summary>
         /// <param name="fkTransferId">fkTransferId</param>

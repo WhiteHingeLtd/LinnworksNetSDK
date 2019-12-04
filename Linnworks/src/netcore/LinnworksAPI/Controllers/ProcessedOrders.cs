@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace LinnworksAPI
 {
@@ -93,10 +94,10 @@ namespace LinnworksAPI
         /// <param name="sortColumn">The column to sort by</param>
         /// <param name="sortDirection">The sort direction (true = ascending, false = descending).</param>
         /// <returns>Returns the URL of the CSV file</returns>
-        public String CreateProcessedOrdersCSV(DateTime? from,DateTime? to,SearchDateType dateType,String searchField,Boolean exactMatch,String searchTerm,String sortColumn,Boolean sortDirection)
+        public Task<String> CreateProcessedOrdersCSV(DateTime? from,DateTime? to,SearchDateType dateType,String searchField,Boolean exactMatch,String searchTerm,String sortColumn,Boolean sortDirection)
 		{
 			var response = GetResponse("ProcessedOrders/CreateProcessedOrdersCSV", "from=" + System.Net.WebUtility.UrlEncode(from.HasValue ? from.Value.ToString("yyyy-MM-dd HH:mm:ss") : "null") + "&to=" + System.Net.WebUtility.UrlEncode(to.HasValue ? to.Value.ToString("yyyy-MM-dd HH:mm:ss") : "null") + "&dateType=" + dateType.ToString() + "&searchField=" + System.Net.WebUtility.UrlEncode(searchField) + "&exactMatch=" + exactMatch + "&searchTerm=" + System.Net.WebUtility.UrlEncode(searchTerm) + "&sortColumn=" + System.Net.WebUtility.UrlEncode(sortColumn) + "&sortDirection=" + sortDirection + "");
-            return JsonFormatter.ConvertFromJson<String>(response);
+            return JsonFormatter.ConvertFromJson<Task<String>>(response);
 		}
 
 		/// <summary>

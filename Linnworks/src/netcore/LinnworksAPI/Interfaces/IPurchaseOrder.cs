@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace LinnworksAPI
 { 
@@ -22,16 +23,18 @@ namespace LinnworksAPI
 		Update_PurchaseOrderItemResponse Deliver_PurchaseItem(Deliver_PurchaseItemParameter deliverItemParameter);
 		Deliver_PurchaseOrderItemAllResponse Deliver_PurchaseItemAll(Guid purchaseId);
 		Deliver_PurchaseOrderItemAllNoBatchResponse Deliver_PurchaseItemAll_ExceptBatchItems(Guid purchaseId);
+		void Deliver_PurchaseItems_WithQuantity(Deliver_PurchaseItems_WithQuantityRequest request);
 		FindStockItem_Response FindStockItem(FindStockItemRequest request);
 		Get_Additional_CostResponse Get_Additional_Cost(Get_Additional_CostRequest request);
 		Get_AdditionalCostTypesResponse Get_AdditionalCostTypes();
 		Get_DeliveredRecords_Response Get_DeliveredRecords(Guid pkPurchaseId);
-		Get_EmailCSVFileResponse Get_EmailCSVFile(Get_EmailCSVFileRequest request);
+		Task<Get_EmailCSVFileResponse> Get_EmailCSVFile(Get_EmailCSVFileRequest request);
 		Get_EmailsSentResponse Get_EmailsSent(Get_EmailsSentRequest request);
 		Get_PaymentStatementResponse Get_Payment_Statement(Get_PaymentStatementRequest request);
 		Get_PurchaseOrderResponse Get_PurchaseOrder(Guid pkPurchaseId);
 		List<PurchaseOrderAudit> Get_PurchaseOrderAudit(Search_PurchaseOrder_AuditLog auditLog);
 		Get_PurchaseOrderExtendedPropertyResponse Get_PurchaseOrderExtendedProperty(Get_PurchaseOrderExtendedPropertyRequest request);
+		Get_PurchaseOrderItem_OpenOrdersResponse Get_PurchaseOrderItem_OpenOrders(Get_PurchaseOrderItem_OpenOrdersRequest request);
 		List<PurchaseOrderNote> Get_PurchaseOrderNote(Guid pkPurchaseId);
 		List<PurchaseOrderStatus> GetPurchaseOrderStatusList();
 		List<Guid> GetPurchaseOrdersWithStockItems(PurchaseOrderWithStockItem purchaseOrder);

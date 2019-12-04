@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Text;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace LinnworksAPI
 { 
     public interface IStockController
 	{
+		AddRollingStockTakeResponse AddRollingStockTake(AddRollingStockTakeRequest request);
 		List<VariationItem> AddVariationItems(Guid pkVariationItemId,List<Guid> pkStockItemIds);
+		BatchStockLevelDeltaResponse BatchStockLevelDelta(BatchStockLevelDetaRequest request);
 		StockItemBatch BookInStockBatch(BatchedBookIn stockItem);
 		void BookInStockItem(BookInStockItem stockItem);
 		VariationParentStatus CheckVariationParentSKUExists(String parentSKU);
@@ -19,7 +22,7 @@ namespace LinnworksAPI
 		void DeleteVariationItem(Guid pkVariationItemId,Guid pkStockItemId);
 		void DeleteVariationItems(DeleteVariationItemsRequest request);
 		GenericPagedResult<StockItemChangeHistory> GetItemChangesHistory(Guid stockItemId,Guid locationId,Int32 entriesPerPage,Int32 pageNumber);
-		TempFile GetItemChangesHistoryCSV(Guid stockItemId,Guid locationId);
+		Task<TempFile> GetItemChangesHistoryCSV(Guid stockItemId,Guid locationId);
 		List<StockItemSoldStat> GetSoldStat(Guid stockItemId);
 		List<StockConsumption> GetStockConsumption(Guid stockItemId,Guid? locationId,DateTime startDate,DateTime endDate);
 		List<StockItemDuePO> GetStockDuePO(Guid stockItemId);
@@ -28,6 +31,7 @@ namespace LinnworksAPI
 		List<StockItem> GetStockItemsByKey(Search_Stock_ByKey stockIdentifier);
 		List<StockItemScrap> GetStockItemScrapStat(Guid stockItemId);
 		List<StockItemFull> GetStockItemsFull(String keyword,Boolean loadCompositeParents,Boolean loadVariationParents,Int32 entriesPerPage,Int32 pageNumber,List<StockInformationDataRequirement> dataRequirements,List<StockInformationSearchType> searchTypes);
+		GetStockItemsFullByIdsResponse GetStockItemsFullByIds(GetStockItemsFullByIdsRequest request);
 		List<StockItemLevel> GetStockLevel(Guid stockItemId);
 		List<GetStockLevel_BatchResponse> GetStockLevel_Batch(GetStockLevel_BatchRequest request);
 		GetStockLevelByLocationResponse GetStockLevelByLocation(GetStockLevelByLocationRequest request);

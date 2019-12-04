@@ -35,11 +35,6 @@ namespace LinnworksAPI
 		public Int32 Available;
 
         /// <summary>
-        /// Stock item creation date 
-        /// </summary>
-		public DateTime? CreationDate;
-
-        /// <summary>
         /// Item is a composite parent 
         /// </summary>
 		public Boolean? IsCompositeParent;
@@ -79,6 +74,8 @@ namespace LinnworksAPI
 		public Double Depth;
 
 		public Double Weight;
+
+		public DateTime? CreationDate;
 
 		public Int32 InventoryTrackingType;
 
