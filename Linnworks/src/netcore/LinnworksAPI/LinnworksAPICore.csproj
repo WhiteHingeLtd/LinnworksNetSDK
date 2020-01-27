@@ -14,7 +14,7 @@
     <Description>An Excellent Package.</Description>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Snek.snk</AssemblyOriginatorKeyFile>
-    <PackageVersion>1.2.1.0-WhiteHinge</PackageVersion>
+    <PackageVersion>1.2.2.0-WhiteHinge</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
