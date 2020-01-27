@@ -9,7 +9,7 @@ namespace LinnworksAPI
     public interface IInventoryController
 	{
 		AddImageToInventoryItemResponse AddImageToInventoryItem(AddImageToInventoryItemRequest request);
-		void AddInventoryItem(StockItem inventoryItem);
+		string AddInventoryItem(StockItem inventoryItem);
 		void AddItemLocations(List<StockItemLocation> itemLocations);
 		void AddProductIdentifiers(AddProductIdentifiersRequest request);
 		AddScrapCategoriesResponse AddScrapCategories(AddScrapCategoriesRequest request);

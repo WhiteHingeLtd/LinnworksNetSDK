@@ -26,9 +26,9 @@ namespace LinnworksAPI
         /// Use this call to add stock item. 
         /// </summary>
         /// <param name="inventoryItem">New StockItem</param>
-        public void AddInventoryItem(StockItem inventoryItem)
+        public string AddInventoryItem(StockItem inventoryItem)
 		{
-			GetResponse("Inventory/AddInventoryItem", "inventoryItem=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(inventoryItem)) + "");
+			return GetResponse("Inventory/AddInventoryItem", "inventoryItem=" + System.Net.WebUtility.UrlEncode(JsonFormatter.ConvertToJson(inventoryItem)) + "");
 		}
 
 		/// <summary>
