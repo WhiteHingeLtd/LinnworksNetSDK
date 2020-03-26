@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System;
+using System.Runtime.Serialization;
 
 namespace LinnworksAPI
 { 
@@ -240,8 +241,12 @@ namespace LinnworksAPI
 
 		public Guid StockItemId;
 
+        public int LocationID;
+        public int LocationWarehouse;
+
+        [IgnoreDataMember]
+        [NonSerialized]
 		public object Whlsku;
-		public int LocationID;
-		public int LocationWarehouse;
+		
 	} 
 }
