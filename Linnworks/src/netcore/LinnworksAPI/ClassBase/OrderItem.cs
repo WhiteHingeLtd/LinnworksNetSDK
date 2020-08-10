@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Text;
 using System;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace LinnworksAPI
 { 
@@ -263,8 +265,8 @@ namespace LinnworksAPI
         public int LocationWarehouse { get; set; }
 
         [IgnoreDataMember]
-        [NonSerialized]
-		public object Whlsku { get; set;}
+        [XmlIgnore]
+        public object Whlsku { get; set;}
 		
 	} 
 }
