@@ -6,8 +6,10 @@ namespace LinnworksAPI
 { 
     public class OrderItemBatchExtended
 	{
-		public Guid pkOrderId;
+		public Guid pkOrderId { get; set; }
 
-		public List<OrderItemBatch> Batches;
+		public Guid OrderId { get; set; }
+
+		public List<OrderItemBatch> Batches { get; set; }
 	} 
 }

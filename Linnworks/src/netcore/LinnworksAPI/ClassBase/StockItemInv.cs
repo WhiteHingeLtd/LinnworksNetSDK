@@ -9,64 +9,68 @@ namespace LinnworksAPI
         /// <summary>
         /// Variation parent group name 
         /// </summary>
-		public String VariationGroupName;
+		public String VariationGroupName { get; set; }
 
-		public Int32 Quantity;
+		public String ItemDescription { get; set; }
 
-		public Int32 InOrder;
+		public Int32 Quantity { get; set; }
 
-		public Int32 Due;
+		public Int32 InOrder { get; set; }
 
-		public Int32 MinimumLevel;
+		public Int32 Due { get; set; }
 
-		public Int32 Available;
+		public Int32 MinimumLevel { get; set; }
 
-		public Boolean? IsCompositeParent;
+		public Int32 Available { get; set; }
 
-		public String ItemNumber;
+		public Boolean? IsCompositeParent { get; set; }
 
-		public String ItemTitle;
+		public String ItemNumber { get; set; }
 
-		public String BarcodeNumber;
+		public String ItemTitle { get; set; }
 
-		public String MetaData;
+		public String BarcodeNumber { get; set; }
 
-		public Boolean isBatchedStockType;
+		public String MetaData { get; set; }
 
-		public Double PurchasePrice;
+		public Boolean isBatchedStockType { get; set; }
 
-		public Double? RetailPrice;
+		public Double PurchasePrice { get; set; }
 
-		public Double TaxRate;
+		public Double? RetailPrice { get; set; }
 
-		public Guid PostalServiceId;
+		public Double TaxRate { get; set; }
 
-		public String PostalServiceName;
+		public Guid PostalServiceId { get; set; }
 
-		public Guid CategoryId;
+		public String PostalServiceName { get; set; }
 
-		public String CategoryName;
+		public Guid CategoryId { get; set; }
 
-		public Guid PackageGroupId;
+		public String CategoryName { get; set; }
 
-		public String PackageGroupName;
+		public Guid PackageGroupId { get; set; }
 
-		public Double Height;
+		public String PackageGroupName { get; set; }
 
-		public Double Width;
+		public Double Height { get; set; }
 
-		public Double Depth;
+		public Double Width { get; set; }
 
-		public Double Weight;
+		public Double Depth { get; set; }
 
-		public DateTime? CreationDate;
+		public Double Weight { get; set; }
 
-		public Int32 InventoryTrackingType;
+		public DateTime? CreationDate { get; set; }
 
-		public Boolean BatchNumberScanRequired;
+		public Int32 InventoryTrackingType { get; set; }
 
-		public Boolean SerialNumberScanRequired;
+		public Boolean BatchNumberScanRequired { get; set; }
 
-		public Guid StockItemId;
+		public Boolean SerialNumberScanRequired { get; set; }
+
+		public Guid StockItemId { get; set; }
+
+		public Int32 StockItemIntId { get; set; }
 	} 
 }

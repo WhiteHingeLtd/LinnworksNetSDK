@@ -9,36 +9,31 @@ namespace LinnworksAPI
         /// <summary>
         /// Postal service ID 
         /// </summary>
-		public Guid? PostalServiceId;
+		public Guid? PostalServiceId { get; set; }
 
         /// <summary>
         /// Order total weight 
         /// </summary>
-		public Double? TotalWeight;
+		public Decimal? TotalWeight { get; set; }
 
         /// <summary>
         /// If order is processed 
         /// </summary>
-		public Double? ItemWeight;
+		public Decimal? ItemWeight { get; set; }
 
         /// <summary>
         /// Order postage cost 
         /// </summary>
-		public Double? PostageCost;
-
-        /// <summary>
-        /// Order postage cost excluding tax 
-        /// </summary>
-		public Double? PostageCostExTax;
+		public Double? PostageCost { get; set; }
 
         /// <summary>
         /// Order tracking number provided by courier 
         /// </summary>
-		public String TrackingNumber;
+		public String TrackingNumber { get; set; }
 
         /// <summary>
         /// If there is an adjustment to shipping cost was made 
         /// </summary>
-		public Boolean? ManualAdjust;
+		public Boolean? ManualAdjust { get; set; }
 	} 
 }

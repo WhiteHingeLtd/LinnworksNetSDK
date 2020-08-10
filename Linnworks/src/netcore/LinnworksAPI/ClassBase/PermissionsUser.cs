@@ -6,29 +6,14 @@ namespace LinnworksAPI
 { 
     public class PermissionsUser
 	{
-        /// <summary>
-        /// User ID 
-        /// </summary>
-		public Int32 UserId;
+		public Int32 UserId { get; set; }
 
-        /// <summary>
-        /// If user is super admin 
-        /// </summary>
-		public Boolean SuperAdmin;
+		public Boolean SuperAdmin { get; set; }
 
-        /// <summary>
-        /// User ID. (SID registration) 
-        /// </summary>
-		public Guid fkUserId;
+		public Guid fkUserId { get; set; }
 
-        /// <summary>
-        /// User email address 
-        /// </summary>
-		public String EmailAddress;
+		public String EmailAddress { get; set; }
 
-        /// <summary>
-        /// User type (e.g. User, Application) 
-        /// </summary>
-		public String UserType;
+		public String UserType { get; set; }
 	} 
 }

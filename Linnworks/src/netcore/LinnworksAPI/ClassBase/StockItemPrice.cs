@@ -7,37 +7,24 @@ namespace LinnworksAPI
     public class StockItemPrice
 	{
         /// <summary>
-        /// Record row ID (generate random) 
-        /// </summary>
-		public Guid pkRowId;
-
-        /// <summary>
-        /// ChannelName/Source (e.g. EBAY) 
-        /// </summary>
-		public String Source;
-
-        /// <summary>
-        /// SubSource (e.g. EBAY1) 
-        /// </summary>
-		public String SubSource;
-
-        /// <summary>
-        /// Channel price 
-        /// </summary>
-		public Double Price;
-
-		public UpdateStatusType UpdateStatus;
-
-        /// <summary>
-        /// Product price tag 
-        /// </summary>
-		public String Tag;
-
-        /// <summary>
         /// Pricing rule 
         /// </summary>
-		public List<StockItemPricingRule> Rules;
+		public List<StockItemPricingRule> Rules { get; set; }
 
-		public Guid StockItemId;
+		public Guid pkRowId { get; set; }
+
+		public String Source { get; set; }
+
+		public String SubSource { get; set; }
+
+		public Double Price { get; set; }
+
+		public String Tag { get; set; }
+
+		public UpdateStatusType UpdateStatus { get; set; }
+
+		public Guid StockItemId { get; set; }
+
+		public Int32 StockItemIntId { get; set; }
 	} 
 }

@@ -6,18 +6,20 @@ namespace LinnworksAPI
 { 
     public class Column
 	{
-		public ColumnNameType ColumnName;
+		public ColumnNameType ColumnName { get; set; }
 
-		public String DisplayName;
+		public String DisplayName { get; set; }
 
-		public GroupType Group;
+		public String ExportName { get; set; }
 
-		public InventoryViewFieldType Field;
+		public GroupType Group { get; set; }
 
-		public SortDirectionType SortDirection;
+		public InventoryViewFieldType Field { get; set; }
 
-		public Double Width;
+		public SortDirectionType SortDirection { get; set; }
 
-		public Boolean IsEditable;
+		public Double Width { get; set; }
+
+		public Boolean IsEditable { get; set; }
 	} 
 }

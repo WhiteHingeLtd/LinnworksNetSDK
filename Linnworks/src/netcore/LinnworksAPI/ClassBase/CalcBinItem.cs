@@ -10,13 +10,25 @@ namespace LinnworksAPI
     public class CalcBinItem
 	{
         /// <summary>
-        /// Unique order item row id 
+        /// Bin Item Id 
         /// </summary>
-		public Guid fkOrderItemId;
+		public Int32 ShippingOrderItemId { get; set; }
 
         /// <summary>
-        /// Quantity of items in the bin 
+        /// Package Id 
         /// </summary>
-		public Int32 Quantity;
+		public Guid BinId { get; set; }
+
+        /// <summary>
+        /// Order Item Id 
+        /// </summary>
+		public Guid fkOrderItemId { get; set; }
+
+        /// <summary>
+        /// Item Part Id 
+        /// </summary>
+		public Int32? BoxId { get; set; }
+
+		public Int32 Quantity { get; set; }
 	} 
 }

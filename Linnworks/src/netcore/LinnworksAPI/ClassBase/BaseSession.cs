@@ -6,36 +6,52 @@ namespace LinnworksAPI
 { 
     public class BaseSession
 	{
-		public Int32? TTL;
+		public Guid Id { get; set; }
 
-		public String Device;
+		public Guid EntityId { get; set; }
 
-		public String DeviceType;
+		public String DatabaseName { get; set; }
 
-		public String Server;
+		public String DatabaseServer { get; set; }
 
-		public String PushServer;
+		public String PrivateDatabaseServer { get; set; }
 
-		public StatusDetails Status;
+		public String DatabaseUser { get; set; }
 
-		public Guid Id;
+		public String DatabasePassword { get; set; }
 
-		public String Email;
+		public Guid sid_registration { get; set; }
 
-		public String UserName;
+		public String UserName { get; set; }
 
-		public String UserType;
+		public String Md5Hash { get; set; }
 
-		public Guid Token;
+		public LocalityType Locality { get; set; }
 
-		public Guid EntityId;
+		public Boolean SuperAdmin { get; set; }
 
-		public String GroupName;
+		public Int32? TTL { get; set; }
 
-		public LocalityType Locality;
+		public Guid Token { get; set; }
 
-		public Dictionary<String,String> Properties;
+		public String GroupName { get; set; }
 
-		public Guid UserId;
+		public String Device { get; set; }
+
+		public String DeviceType { get; set; }
+
+		public String UserType { get; set; }
+
+		public StatusDetails Status { get; set; }
+
+		public Guid UserId { get; set; }
+
+		public Dictionary<String,String> Properties { get; set; }
+
+		public String Email { get; set; }
+
+		public String Server { get; set; }
+
+		public String PushServer { get; set; }
 	} 
 }

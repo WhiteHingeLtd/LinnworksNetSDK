@@ -6,12 +6,24 @@ namespace LinnworksAPI
 { 
     public class VirtualPrinter
 	{
-		public String PrinterName;
+        /// <summary>
+        /// Name used to identify the printer in linnworks 
+        /// </summary>
+		public String PrinterName { get; set; }
 
-		public String PrinterLocationName;
+        /// <summary>
+        /// Name used to identify the instance of the virtual printer client 
+        /// </summary>
+		public String PrinterLocationName { get; set; }
 
-		public String PrinterLocalName;
+        /// <summary>
+        /// Printer name as seen in windows OS (e.g. Microsoft Print to PDF) 
+        /// </summary>
+		public String PrinterLocalName { get; set; }
 
-		public PrinterStatus Status;
+        /// <summary>
+        /// Whether the printer is online or offline 
+        /// </summary>
+		public PrinterStatus Status { get; set; }
 	} 
 }
